@@ -3,19 +3,42 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // The `/api/products` endpoint
 
-// get all products
+// GET ROUTE - ALL
 router.get('/', (req, res) => {
-  // find all products
-  // be sure to include its associated Category and Tag data
+  Product.findAll({
+    include: [{
+      model: Category,
+      required: false
+    },{
+      model: Tag,
+      required: false}]
+  }).then(products=>{
+    res.json(products);
+  }).catch(err=>{
+    console.log(err);
+    res.status(500).json({msg:"error occurred",err});
+  });
 });
 
-// get one product
+// GET ROUTE - SINGULAR
 router.get('/:id', (req, res) => {
-  // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
+  Product.findByPk(req.params.id,{
+    include: [{
+      model: Category,
+      required: false
+    },{
+      model: Tag,
+      required: false}]
+  }).then(product=>{
+    res.json(product);
+  }).catch(err=>{
+    console.log(err);
+    res.status(500).json({msg:"error occurred",err});
+  });
 });
 
 // create new product
+// TODO: explain with comments, add category appending
 router.post('/', (req, res) => {
   /* req.body should look like this...
     {
@@ -48,6 +71,7 @@ router.post('/', (req, res) => {
 });
 
 // update product
+// TODO: Add comments explaining functionality
 router.put('/:id', (req, res) => {
   // update product data
   Product.update(req.body, {
@@ -89,8 +113,18 @@ router.put('/:id', (req, res) => {
     });
 });
 
+// DELETE ROUTE
 router.delete('/:id', (req, res) => {
-  // delete one product by its `id` value
+  Product.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then(delProduct=>{
+    res.json({msg: "product deleted",delProduct});
+  }).catch(err=>{
+    console.log(err);
+    res.status(500).json({msg:"error occurred",err});
+  });
 });
 
 module.exports = router;
