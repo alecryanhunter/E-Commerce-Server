@@ -5,9 +5,10 @@ const Tag = require('./Tag');
 const ProductTag = require('./ProductTag');
 
 // Products belongsTo Category
+// TODO: fix doubling foreign key error
 Product.belongsTo(Category,{
   foreignKey: "category_id"
-})
+});
 
 // Categories have many Products
 Category.hasMany(Product)
