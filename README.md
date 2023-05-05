@@ -14,7 +14,7 @@ The three routes are `api/categories`, `api/tags`, and `api/products`. Each of t
 This program was quite difficult for me to create. For one, I find starting with starter code significantly harder than not having any, and for two, I struggled a lot learing Sequelize. It doesn't come very natural to me, at all. I think I understand it a bit better now, but I have a few issues still in the program relating to foreign keys and column heading names. I'd like to fix those at a later date, if possible.
 
 ## Usage
-A video demonstrating this program's use can be found [here]().
+A video demonstrating this program's use can be found [here](https://drive.google.com/file/d/1y6Str6qCyHDTV0ji4ZIsDUSBHMR3fjuK/view).
 
 After following the [installation](#installation) instructions, run the `npm start` command. This will host the server at `http://localhost:5678`. You can then utilize the server using a program such as Insomnia.
 
